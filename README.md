@@ -27,7 +27,7 @@ appear since the section that contains the site will be hidden, and the informat
   2. flexbox styling.
 
 #### The site is :
-  1. Accessibility.
+  1. Accessible.
   2. Html Errors free.
   3. Attractive.
   4. Easy to use.
