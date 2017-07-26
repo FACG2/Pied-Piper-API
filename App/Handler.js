@@ -1,21 +1,22 @@
-(function() {
+(function(){
 
   var castList=document.getElementById('castList');
 
 
 
 
-function FetchMovieCastList(id) {
-    var url="http://api.themoviedb.org/3/movie/" + id + "/casts?api_key=bfd5274ec186e4bf6e99f1d3b76cdb1b";
-    console.log('befor xhr Request');
+  function FetchMovieCastList(id) {
+      var url="http://api.themoviedb.org/3/movie/" + id + "/casts?api_key=bfd5274ec186e4bf6e99f1d3b76cdb1b";
+      console.log('befor xhr Request');
 
-    xhr_request(url , function(data) {
-      console.log(castData(data));
-    });
+      xhr_request(url , function(data) {
+        renderCastList(castData(data));
+        console.log(castData(data));
+      });
 
-  }
+    }
 
-FetchMovieCastList(747);
+  FetchMovieCastList(747);
 
 
   function castData(data) {
@@ -38,41 +39,37 @@ FetchMovieCastList(747);
 
   }
 
+  function renderCastList(castedData){
 
-module.exports = {
-  FetchMovieCastList,
-  castData,
-  xhr_request
-}
-
-
-
-
-
-
-
-
-
-//images Root Directory : http://image.tmdb.org/t/p/w640/{image Hash name.jpg}
-
-//it should be tested
-
-
+      var castListContainer = document.getElementById('castLis');
+      var list=document.createElement('ul');
+      castedData.map(function(actor) {
+          var item=document.createElement('li');
+            item.id = actor.id;
+          var img=document.createElement('img');
+            img.classList.add("actorPhoto");
+            img.src =actor.avatar_url;
+          var actorName=document.createElement('span');
+            actorName.textContent=actor.name;
+            actorName.classList.add("actorName");
+          var actorRoll=document.createElement('span');
+            actorRoll.textContent=actor.char;
+            actorRoll.classList.add("actorRoll");
+          var profilLink=document.createElement('a');
+            profilLink.href=actor.profil_url;
 
 
 
-  // function updateCastList(data){
-  //     var newData=Object.assign({},data);
-  //     var actorElement =document.createElement('div');
-  //     var actorSpane =
-  //     newData.cast.map(function(actor) {
-  //         actor
-  //
-  //
-  //
-  //     })
-  //
-  // }
+            profilLink.appendChild(img);
+            profilLink.appendChild(actorName);
+            profilLink.appendChild(actorRoll);
+            item.appendChild(profilLink);
+            list.appendChild(item);
+          castListContainer.appendChild(list);
+      })
+
+    }
+
 
 
 })()
