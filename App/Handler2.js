@@ -23,7 +23,7 @@
 }
 
 
-function moviesList(data){
+function moviesList(data , cb2){
   var bigList= data.results.map(function(movie) {
     return {'title':movie.title , 'id':movie.id ,  'poster_path':'http://image.tmdb.org/t/p/w640/'+ movie.poster_path , 'vote' : movie.vote_average , 'overview': movie.overview  , 'date': movie.release_date};
   });
@@ -33,20 +33,25 @@ function moviesList(data){
     return movie ;
 
   });
+  cb2(filteredMovies);
   return filteredMovies;
 
 }
 // var obj= fetchMoviesData('split');
 
-fetchMoviesData('split',function(tst){
-  console.log(moviesList(tst));
-});
+// fetchMoviesData('split',function(tst){ ///////// callback 1
+//   console.log(moviesList(tst));
+// });
 
 
 
+  //
+  // var castList=document.getElementById('castList');
+  // var id=215;  /////// movie.id
 
-  var castList=document.getElementById('castList');
-  var id=215;  /////// movie.id
+  // fetchMoviesData('split',function(tst){ ///////// callback 1
+  //   console.log(moviesList(tst));
+  // });
 
   function FetchMovieCastList(id) {
     var url="http://api.themoviedb.org/3/movie/" + id + "/casts?api_key=bfd5274ec186e4bf6e99f1d3b76cdb1b";
@@ -64,6 +69,23 @@ fetchMoviesData('split',function(tst){
     });
   }
 
-FetchMovieCastList(121);
+
+  // fetchMoviesData('split',function(tst){ ///////// callback 1
+  //   console.log(moviesList(tst));
+  // });
+
+
+
+    fetchMoviesData('split',function(tst){ ///////// callback 1
+      moviesList(tst, function(test){
+        test.map(function(item){
+          console.log(item.id);
+        });
+      });
+    });
+
+
+
+// FetchMovieCastList(121);
 
 })();
