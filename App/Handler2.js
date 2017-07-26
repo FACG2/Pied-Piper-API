@@ -45,20 +45,12 @@ function moviesList(data , cb2){
 
 
 
-  //
-  // var castList=document.getElementById('castList');
-  // var id=215;  /////// movie.id
-
-  // fetchMoviesData('split',function(tst){ ///////// callback 1
-  //   console.log(moviesList(tst));
-  // });
-
   function FetchMovieCastList(id) {
     var url="http://api.themoviedb.org/3/movie/" + id + "/casts?api_key=bfd5274ec186e4bf6e99f1d3b76cdb1b";
     var xhr = new XMLHttpRequest();
         xhr.onload= function() {
-          if (this.readyState == 4 && this.status == 200)
-          console.log(castData(JSON.parse(xhr.responseText)));
+          if (this.readyState == 4 && this.status == 200){}
+          //console.log(castData(JSON.parse(xhr.responseText)));
         };
         xhr.open("GET", url,true);
         xhr.send();
@@ -70,22 +62,54 @@ function moviesList(data , cb2){
   }
 
 
-  // fetchMoviesData('split',function(tst){ ///////// callback 1
-  //   console.log(moviesList(tst));
-  // });
+  // // fetchMoviesData('split',function(tst){ ///////// callback 1
+  // //   console.log(moviesList(tst));
+  // // });
 
 
 
-    fetchMoviesData('split',function(tst){ ///////// callback 1
-      moviesList(tst, function(test){
-        test.map(function(item){
-          console.log(item.id);
-        });
-      });
-    });
+  //   fetchMoviesData('split',function(tst){ ///////// callback 1
+  //     moviesList(tst, function(test){
+  //       test.map(function(item){
+  //        // console.log(item.id);
+  //       });
+  //     });
+  //   });
 
 
 
 // FetchMovieCastList(121);
 
+//youtube 
+function fetchMoviestrailer(SearchQuery) {
+  var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        var data = JSON.parse(xhr.responseText);
+        // cb(data);
+
+        console.log(data);
+      };
+      // console.log(movieMainList);
+      }
+      xhr.open("GET","https://www.googleapis.com/youtube/v3/search?q="+ SearchQuery.replace(/ /g, '%20') + "movie%20trialer&maxResults=1&part=snippet&key=AIzaSyAF-Dke9dKBWXWuIKFkaIaEtgxtkLiftiI", true);
+      xhr.send();
+
+}
+
+fetchMoviestrailer('split');
+
+//https://www.youtube.com/watch?v=
+
+// function getTrailer(data){
+//   var video = 'https://www.youtube.com/watch?v='+data.items['0'].id.videoId;
+//  return video;
+
+// }
+
+
+
 })();
+
+
+//"https://www.googleapis.com/youtube/v3/search?q="+ SearchQuery.replace(/ /g, '%20') + "&maxResults=3&part=snippet&key=AIzaSyAF-Dke9dKBWXWuIKFkaIaEtgxtkLiftiI"
