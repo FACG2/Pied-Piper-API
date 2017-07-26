@@ -1,6 +1,11 @@
 
 
 (function() {
+
+    var inpQuery=document.getElementById("descriptionI");
+    var submit=document.getElementById("submit");
+    var formS=document.getElementById("seach-form");
+
     var movieMainList={};
     var rate=6;
   function fetchMoviesData(SearchQuery,cb) {
@@ -15,7 +20,7 @@
       var data = JSON.parse(xhr.responseText);
       cb(data);
     };
-    // console.log(movieMainList);
+
     }
     xhr.open("GET","https://api.themoviedb.org/3/search/movie?api_key=bfd5274ec186e4bf6e99f1d3b76cdb1b&language=en-US&query=" +SearchQuery.replace(/ /g, '+') + "&page=1&include_adult=false", true);
     xhr.send();
@@ -23,7 +28,7 @@
 }
 
 
-function moviesList(data , cb2){
+function moviesList(data){
   var bigList= data.results.map(function(movie) {
     return {'title':movie.title , 'id':movie.id ,  'poster_path':'http://image.tmdb.org/t/p/w640/'+ movie.poster_path , 'vote' : movie.vote_average , 'overview': movie.overview  , 'date': movie.release_date};
   });
@@ -33,17 +38,17 @@ function moviesList(data , cb2){
     return movie ;
 
   });
-  cb2(filteredMovies);
   return filteredMovies;
 
 }
+
+
 // var obj= fetchMoviesData('split');
 
 // fetchMoviesData('split',function(tst){ ///////// callback 1
 //   console.log(moviesList(tst));
 // });
-
-
+ 
 
   function FetchMovieCastList(id) {
     var url="http://api.themoviedb.org/3/movie/" + id + "/casts?api_key=bfd5274ec186e4bf6e99f1d3b76cdb1b";
@@ -76,10 +81,6 @@ function moviesList(data , cb2){
   //     });
   //   });
 
-
-
-// FetchMovieCastList(121);
-
 //youtube 
 function fetchMoviestrailer(SearchQuery) {
   var xhr = new XMLHttpRequest();
@@ -99,17 +100,14 @@ function fetchMoviestrailer(SearchQuery) {
 
 fetchMoviestrailer('split');
 
-//https://www.youtube.com/watch?v=
 
-// function getTrailer(data){
-//   var video = 'https://www.youtube.com/watch?v='+data.items['0'].id.videoId;
-//  return video;
 
-// }
+function getTrailer(data){
+  var video = 'https://www.youtube.com/watch?v='+data.items['0'].id.videoId;
+ return video;
+
+}
 
 
 
 })();
-
-
-//"https://www.googleapis.com/youtube/v3/search?q="+ SearchQuery.replace(/ /g, '%20') + "&maxResults=3&part=snippet&key=AIzaSyAF-Dke9dKBWXWuIKFkaIaEtgxtkLiftiI"
