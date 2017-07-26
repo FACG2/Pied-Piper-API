@@ -1,29 +1,58 @@
 (function() {
 
   var castList=document.getElementById('castList');
-  var id=215;
 
 
 
-  function FetchMovieCastList(id) {
+
+function FetchMovieCastList(id) {
     var url="http://api.themoviedb.org/3/movie/" + id + "/casts?api_key=bfd5274ec186e4bf6e99f1d3b76cdb1b";
-    var xhr = new XMLHttpRequest();
-        xhr.onload= function() {
-          if (this.readyState == 4 && this.status == 200)
-          console.log(castData(JSON.parse(xhr.responseText)));
-        };
-        xhr.open("GET", url,true);
-        xhr.send();
+    console.log('befor xhr Request');
+
+    xhr_request(url , function(data) {
+      console.log(castData(data));
+    });
+
   }
+
+FetchMovieCastList(747);
+
+
   function castData(data) {
     return data.cast.map(function(actor) {
-      return {'name':actor.name , 'char':actor.character ,  'avatar_url':'http://image.tmdb.org/t/p/w640/'+ actor.profile_path , 'profil_url': 'https://www.themoviedb.org/person/'+actor.id};
+      return {'id':actor.cast_id,'name':actor.name , 'char':actor.character ,  'avatar_url':'http://image.tmdb.org/t/p/w640/'+ actor.profile_path , 'profil_url': 'https://www.themoviedb.org/person/'+actor.id};
     });
   }
 
+  function xhr_request(url ,func ){
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange= function() {
+            if (this.readyState == 4 && this.status == 200){
+              var data=JSON.parse(this.responseText);
+              func(data);
+            }
+        };
+
+        xhr.open("GET", url,true);
+        xhr.send();
+
+  }
 
 
-FetchMovieCastList(121);
+module.exports = {
+  FetchMovieCastList,
+  castData,
+  xhr_request
+}
+
+
+
+
+
+
+
+
+
 //images Root Directory : http://image.tmdb.org/t/p/w640/{image Hash name.jpg}
 
 //it should be tested
