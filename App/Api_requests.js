@@ -29,7 +29,8 @@ var onSubmit=document.getElementById('submit');
       console.log(SQ);
       var url="https://api.themoviedb.org/3/search/movie?api_key=bfd5274ec186e4bf6e99f1d3b76cdb1b&language=en-US&query=" +SearchQuery.replace(/ /g, '+') + "&page=1&include_adult=false";
         xhr_request(url ,function(data) {
-            document.getElementById('moviesContainer').innerHTML="";
+          //clear the element to add new data!
+            clearThePage();
             updateMovieResults(moviesList(data));
         })
       }
@@ -59,6 +60,7 @@ var onSubmit=document.getElementById('submit');
 
   function updateTrailerList(vidsUrl) {
     var trailerContainer=document.getElementById('trailerContainer');
+    trailerContainer.innerHTML="";
     var video=document.createElement('iframe');
     video.src=vidsUrl;
     video.height= '450';
@@ -68,7 +70,7 @@ var onSubmit=document.getElementById('submit');
   function updateMovieDesc(movie){
 
             var DescriptionCont=document.getElementById('descCon');
-           
+            DescriptionCont.innerHTML="";
 
             var title=document.createElement('span');
             title.classList.add('title');
@@ -93,6 +95,7 @@ var onSubmit=document.getElementById('submit');
   function renderCastList(castedData){
 
           var castListContainer = document.getElementById('castLis');
+          castListContainer.innerHTML="";
           var list=document.createElement('ul');
           actorCoun=0;
           castedData.map(function(actor) {
@@ -128,12 +131,12 @@ var onSubmit=document.getElementById('submit');
         data.map(function(movie) {
               var movieBlock=document.createElement('div');
               var title =document.createElement('span');
-              var poster=document.createElement('img'); 
+              var poster=document.createElement('img');
               poster.src=movie.poster_path;
               movieBlock.appendChild(poster);
               title.classList.add('mTitle');
               movieBlock.classList.add('movieBlock');//movie block class
-             
+
               title.textContent=movie.title +" ("+ movie.date.substring(0, 4) +")";
 
               movieBlock.appendChild(title);
@@ -173,4 +176,11 @@ var onSubmit=document.getElementById('submit');
         return data.cast.map(function(actor) {
           return {'id':actor.cast_id,'name':actor.name , 'char':actor.character ,  'avatar_url':'http://image.tmdb.org/t/p/w640/'+ actor.profile_path , 'profil_url': 'https://www.themoviedb.org/person/'+actor.id};
         });
+  }
+  function clearThePage() {
+
+    document.getElementById('moviesContainer').innerHTML="";
+    document.getElementById('descCon').innerHTML="";
+    document.getElementById('castLis').innerHTML="";
+    document.getElementById('trailerContainer').innerHTML="";
   }

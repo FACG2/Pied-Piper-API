@@ -16,6 +16,11 @@ body{
 	border: 1px solid #bcb4b4;
 	text-align: center;
 }
+.movieBlock:hover {
+    border: 1px solid #777;
+}
+
+
 .movieBlock img{
 	display:block;
 	height:268px ;
@@ -39,7 +44,7 @@ form #submit{
 
 form{
 	    font-size: 0;
-	    
+
 }
 
 #formSreach{
@@ -84,7 +89,10 @@ ul{
 }
   .actorDetails a{
  text-decoration: none;
-  	}  
+  	}
+.actorDetails:hover {
+		    border: 1px solid #777;
+		}
 .actorDetails span{
 	color: #000;
 	font-size: 16px;
