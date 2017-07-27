@@ -1,0 +1,124 @@
+body{
+	background-color: #eaebed;
+		font-family: sans-serif;
+
+}
+
+.container{
+	margin:0 auto;
+	width: 1090px;
+}
+.movieBlock{
+	display: inline-block;
+	border-radius: 4px;
+	padding: 5px;
+	margin: 0 20px 0 0;
+	border: 1px solid #bcb4b4;
+	text-align: center;
+}
+.movieBlock img{
+	display:block;
+	height:268px ;
+	width: 182px;
+}
+
+form #submit{
+	    height: 40px;
+    width: 98px;
+    border-radius: 0 5px 5px 0;
+    border: none;
+    background-color: #212121;
+    color: #fff;
+
+}
+
+#moviesContainer{
+	text-align: center;
+	margin-top: 35px;
+}
+
+form{
+	    font-size: 0;
+	    
+}
+
+#formSreach{
+		    margin:150px 0 0 0;
+			text-align:center;
+}
+
+
+#formSreach h1{
+	font-family: sans-serif;
+    font-size: 38px;
+    color: #212121;
+
+}
+form #searchQ{
+    height: 38px;
+    width: 191px;
+    border-radius: 5px 0 0 5px;
+    border: none;
+    background-color: #212121;
+    color: #fff;
+    margin-left: 0;
+}
+
+
+.actorDetails img{
+	height:44px ;
+	width: 32px;
+}
+ul{
+	list-style-type: none;
+}
+#actLis li{
+	overflow: hidden;
+	list-style-type: none;
+		display: inline-block;
+	border-radius: 4px;
+	padding: 5px;
+	margin: 0 20px 0 0;
+	border: 1px solid #bcb4b4;
+	text-align: center;
+}
+  .actorDetails a{
+ text-decoration: none;
+  	}  
+.actorDetails span{
+	color: #000;
+	font-size: 16px;
+	margin-left: 5px;
+}
+
+.actorDetails{
+	font-family: sans-serif;
+	background-color: #fff;
+	border-radius: 2px;
+	margin-bottom: 5px;
+}
+
+#descCon .title{
+	    display: block;
+    text-align: center;
+    font-size: 24px;
+    color: #212121;
+}
+
+#descCon .rate{
+	    display: block;
+	    	    text-align: center;
+
+    font-size: 24px;
+    color: #212121;
+}
+
+#descCon p{
+	    text-align: center;
+
+}
+
+#trailerContainer{
+		    text-align: center;
+
+}
