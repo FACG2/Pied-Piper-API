@@ -68,25 +68,27 @@ var onSubmit=document.getElementById('submit');
   function updateMovieDesc(movie){
 
             var DescriptionCont=document.getElementById('descCon');
-            var descrip=document.createElement('p');
-            descrip.textContent=movie.overview;
-            DescriptionCont.appendChild(descrip);
+           
 
             var title=document.createElement('span');
             title.classList.add('title');
-            title.textContent=movie.title;
+            title.textContent=movie.title+" ("+ movie.date.substring(0, 4) +")";
             DescriptionCont.appendChild(title);
 
             var rate=document.createElement('span');
             rate.classList.add('rate');
-            rate.textContent=movie.vote;
+            rate.textContent="Rate: " + movie.vote +"/10" ;
             DescriptionCont.appendChild(rate);
+
+             var descrip=document.createElement('p');
+            descrip.textContent= "The description: "+ movie.overview;
+            DescriptionCont.appendChild(descrip);
 
             var dateR=document.createElement('span');
             dateR.classList.add('Release');
             dateR.textContent=movie.date;
 
-            DescriptionCont.appendChild(dateR);
+            //DescriptionCont.appendChild(dateR);
   }
   function renderCastList(castedData){
 
@@ -96,15 +98,15 @@ var onSubmit=document.getElementById('submit');
           castedData.map(function(actor) {
             if(actorCoun < 11){
               var item=document.createElement('li');
-                item.id = actor.id;
+                item.classList.add('actorDetails');
               var img=document.createElement('img');
                 img.classList.add("actorPhoto");
                 img.src =actor.avatar_url;
               var actorName=document.createElement('span');
-                actorName.textContent=actor.name;
+                actorName.textContent="Actor name:  " + actor.name;
                 actorName.classList.add("actorName");
               var actorRoll=document.createElement('span');
-                actorRoll.textContent=actor.char;
+                actorRoll.textContent="Character name:  "+actor.char;
                 actorRoll.classList.add("actorRoll");
               var profilLink=document.createElement('a');
                 profilLink.href=actor.profil_url;
@@ -126,16 +128,15 @@ var onSubmit=document.getElementById('submit');
         data.map(function(movie) {
               var movieBlock=document.createElement('div');
               var title =document.createElement('span');
+              var poster=document.createElement('img'); 
+              poster.src=movie.poster_path;
+              movieBlock.appendChild(poster);
               title.classList.add('mTitle');
-              var relDate=document.createElement('span');
-              relDate.classList.add('relDate');
               movieBlock.classList.add('movieBlock');//movie block class
-              movieBlock.style.background = "url('"+movie.poster_path+"')";
-              title.textContent=movie.title;
-              relDate.textContent=movie.date.substring(0, 4);
+             
+              title.textContent=movie.title +" ("+ movie.date.substring(0, 4) +")";
 
               movieBlock.appendChild(title);
-              movieBlock.appendChild(relDate);
 
               movieBlock.addEventListener("click", function() {
                 moviesContainer.innerHTML="";
@@ -165,7 +166,7 @@ var onSubmit=document.getElementById('submit');
     return filteredMovies;
   }
   function getTrailer(data){
-      var video = 'https://www.youtube.com/watch?v='+data.items['0'].id.videoId;
+      var video = 'https://www.youtube.com/embed/'+data.items['0'].id.videoId;
      return video;
   }
   function castData(data) {

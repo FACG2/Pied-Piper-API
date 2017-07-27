@@ -1,4 +1,4 @@
-
+   
 (function() {
     
     var inpQuery=document.getElementById("descriptionI");
