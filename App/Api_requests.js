@@ -35,7 +35,7 @@ var onSubmit=document.getElementById('submit');
         })
       }
   function FetchMovieCastList(id) {
-              var url="http://api.themoviedb.org/3/movie/" + id + "/casts?api_key=bfd5274ec186e4bf6e99f1d3b76cdb1b";
+              var url="https://api.themoviedb.org/3/movie/" + id + "/casts?api_key=bfd5274ec186e4bf6e99f1d3b76cdb1b";
               xhr_request(url , function(data) {
 
                 renderCastList(castData(data));
